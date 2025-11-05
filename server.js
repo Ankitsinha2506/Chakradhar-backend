@@ -3,10 +3,10 @@ const dotenv = require("dotenv").config();
 const app = require("./app");
 const cors = require("cors");
 
-// ✅ Simple & effective CORS setup for development
+// ✅ Simple & flexible CORS setup
 app.use(
   cors({
-    origin: "*", // open during development
+    origin: "*", // Use "*" for testing — restrict later to your app domain
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -15,7 +15,7 @@ app.use(
 
 const PORT = process.env.PORT || 5000;
 
-// ✅ Expose server to all devices on your LAN
+// ✅ Use 0.0.0.0 so Render can expose the server publicly
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`✅ Server is running at http://192.168.1.108:${PORT}`);
+  console.log(`✅ Server is running on port ${PORT}`);
 });
