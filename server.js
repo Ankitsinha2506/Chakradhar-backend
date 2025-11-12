@@ -13,6 +13,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("Backend is live ✅");
+});
+
 const PORT = process.env.PORT || 5000;
 
 // ✅ Use 0.0.0.0 so Render can expose the server publicly
