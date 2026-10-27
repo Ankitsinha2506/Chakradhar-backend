@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require("cors");
+const corsOptions = require("./config/cors");
 const app = express();
 const connectDb = require("./DBConfig/db");
 const userAppRouters = require("./routers/userRouters");
@@ -11,6 +13,10 @@ const BhagavatGitaRouter = require("./routers/BhagavatGItaRouter")
 
 connectDb();
 
+// Register CORS before parsers and routes so preflight, API, and error
+// responses include the headers required by browser clients.
+// Authentication uses bearer tokens, so credentialed cookies are not needed.
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/users", userAppRouters);
